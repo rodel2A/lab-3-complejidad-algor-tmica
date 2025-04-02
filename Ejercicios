@@ -102,14 +102,5 @@ public static void mergeSort(int[] arr, int l, int r) {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 7. Merge Sort Híbrido
-
-public static void hybridSort(int[] arr, int l, int r) {
-    if (r - l <= 10) {                  // Umbral
-        insertionSort(arr, l, r);        // O(k²)
-    } else {
-        int m = l + (r - l)/2;
-        hybridSort(arr, l, m);
-        hybridSort(arr, m+1, r);
-        merge(arr, l, m, r);            // O(n)
-    }
-}
+ingeniera disculpe
+no puede terminar de resolverlo a tiempo ,estubo complicado 

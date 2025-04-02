@@ -1,0 +1,35 @@
+# Análisis de Complejidad Algorítmica
+
+## 🧩 Actividades Resueltas
+
+### 1. Procedimiento intercambia
+```pascal
+PROCEDIMIENTO intercambia(REF x : ENTERO, REF y : ENTERO)
+    aux : ENTERO;
+    aux := x;    // O(1)
+    x := y;      // O(1)
+    y := aux;    // O(1)
+FINPROCEDIMIENTO
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+FUNCIÓN sumaArreglo(A : ARREGLO[1..n] DE ENTERO) : ENTERO
+    suma : ENTERO := 0;          // O(1)
+    PARA i DESDE 1 HASTA n HACER // O(n)
+        suma := suma + A[i];     // O(1)
+    FINPARA
+    RETORNA suma;                // O(1)
+FIN FUNCIÓN
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  PROCEDIMIENTO matrizTranspuesta(REF M : MATRIZ[1..n][1..n] DE ENTERO)
+    PARA i DESDE 1 HASTA n HACER                     // O(n)
+        PARA j DESDE i+1 HASTA n HACER               // O(n-i) ≈ O(n)
+            intercambia(M[i][j], M[j][i]);          // O(1)
+        FINPARA
+    FINPARA
+FINPROCEDIMIENTO
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+

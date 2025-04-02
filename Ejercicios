@@ -1,0 +1,115 @@
+1:
+
+FUNCIÓN BM(v : VECTOR[ENTERO], n : ENTERO) : ENTERO
+    m := v[0]                         // O(1)
+    PARA i DESDE 1 HASTA n-1 HACER    // O(n)
+        SI v[i] > m ENTONCES          // O(1)
+            m := v[i]                 // O(1)
+        FINSI
+    FINPARA
+    DEVOLVER m                        // O(1)
+FINFUNCIÓN
+
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+2:
+
+FUNCIÓN ConteoI(v : VECTOR[ENTERO], n : ENTERO) : ENTERO
+    conteo := 0                              // O(1)
+    PARA i DESDE 0 HASTA n-2 HACER          // O(n)
+        PARA j DESDE i+1 HASTA n-1 HACER    // O(n)
+            SI v[i] = v[j] ENTONCES         // O(1)
+                conteo := conteo + 1         // O(1)
+            FINSI
+        FINPARA
+    FINPARA
+    DEVOLVER conteo                         // O(1)
+FINFUNCIÓN
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+3:
+
+public static int moda(int[] v) {
+    Map<Integer, Integer> frecuencia = new HashMap<>(); // O(1)
+    int maxFrecuencia = 0;                              // O(1)
+    int moda = v[0];                                    // O(1)
+    for (int num : v) {                                 // O(n)
+        int f = frecuencia.getOrDefault(num, 0) + 1;    // O(1) amortizado
+        frecuencia.put(num, f);                         // O(1) amortizado
+        if (f > maxFrecuencia) {                        // O(1)
+            maxFrecuencia = f;                          // O(1)
+            moda = num;                                 // O(1)
+        }
+    }
+    return moda;                                        // O(1)
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+4:
+
+##Potencia Rápida (Recursiva)##
+
+FUNCIÓN potenciaRapida(x : ENTERO, y : ENTERO) : ENTERO
+    SI y = 0 ENTONCES                       // O(1)
+        DEVOLVER 1                           // O(1)
+    SINO SI y % 2 = 0 ENTONCES              // O(1)
+        mitad := potenciaRapida(x, y / 2)   // T(y/2)
+        DEVOLVER mitad * mitad              // O(1)
+    SINO
+        DEVOLVER x * potenciaRapida(x, y-1) // T(y-1)
+    FINSI
+FINFUNCIÓN
+
+  ##Ecuación de recurrencia:##
+T(y) = {
+    O(1)           si y = 0,
+    T(y/2) + O(1)  si y par,
+    T(y-1) + O(1)  si y impar
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+5:
+
+T(n) = {
+    T(n/2) + 3  si n ≥ 2,
+    7           si n = 1
+}
+
+Expansión:
+
+T(n) = T(n/2) + 3
+     = T(n/4) + 3 + 3
+     = ...
+     = T(1) + 3*log₂n
+     = 7 + 3log₂n
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  6: Merge Sort (Java)
+
+public static void mergeSort(int[] arr, int l, int r) {
+    if (l < r) {                        // O(1)
+        int m = l + (r - l)/2;          // O(1)
+        mergeSort(arr, l, m);            // T(n/2)
+        mergeSort(arr, m+1, r);          // T(n/2)
+        merge(arr, l, m, r);             // O(n)
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+7. Merge Sort Híbrido
+
+public static void hybridSort(int[] arr, int l, int r) {
+    if (r - l <= 10) {                  // Umbral
+        insertionSort(arr, l, r);        // O(k²)
+    } else {
+        int m = l + (r - l)/2;
+        hybridSort(arr, l, m);
+        hybridSort(arr, m+1, r);
+        merge(arr, l, m, r);            // O(n)
+    }
+}
